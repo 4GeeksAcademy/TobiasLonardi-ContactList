@@ -19,7 +19,19 @@ export const Home = () => {
 
 	const [contact, setContact] = useState(defaultContact)
 
+	const [deleteID, setDeleteID] = useState(0)
+
 	const [allContacts, setAllContacts] = useState([])
+
+	async function deleteContact(id){
+		const response = await fetch(`${defaultAPI}/agendas/Tobias/contacts/${id}`,{
+			method:"DELETE"
+		})
+		if(response.ok){
+			getAllContacts()
+		}
+	}
+
 
 	async function getAllContacts() {
 		const result = await fetch(`${defaultAPI}/agendas/Tobias`)
@@ -46,7 +58,7 @@ export const Home = () => {
 			<div className="d-flex flex-column ">
 				{allContacts.map((item) =>
 
-					<div className=" bg-primary-subtle border border-primary-subtle rounded-3">
+					<div className=" bg-secondary-subtle border border-secondary-subtle rounded-3">
 						<div className="d-flex justify-content-start w-100">
 
 							<img src="https://i.pravatar.cc/300" alt="" className="profilePicture rounded-circle" />
@@ -76,9 +88,9 @@ export const Home = () => {
 
 							</div>
 							<div className="d-flex justify-content-end w-100 ">
-								<i className="fa-solid fa-pencil p-4"></i>
+								<Link className="fa-solid fa-pencil p-4" to="/updateContact" style={{ color: 'inherit', textDecoration: 'none' }}></Link>
 
-								<i className="fa-solid fa-trash p-4 btn"data-bs-target="#exampleModalToggle" data-bs-toggle="modal"></i>
+								<i className="fa-solid fa-trash p-4 btn"data-bs-target="#exampleModalToggle" data-bs-toggle="modal" onClick={()=>setDeleteID(item.id)}></i>
 							</div>
 						</div>
 
@@ -100,7 +112,7 @@ export const Home = () => {
 							are you sure do you want to delete it?
 						</div>
 						<div class="modal-footer">
-							<button class="btn btn-secondary" data-bs-dismiss="modal">delete</button>
+							<button class="btn btn-secondary" data-bs-dismiss="modal" onClick={()=>deleteContact(deleteID)}>delete</button>
 							<button class="btn btn-primary" data-bs-dismiss="modal">cancel</button>
 						</div>
 					</div>
