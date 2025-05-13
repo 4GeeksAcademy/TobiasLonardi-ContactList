@@ -39,6 +39,18 @@ export const Home = () => {
 		if (result.ok) {
 			setAllContacts(data.contacts)
 		}
+		else{
+			createProfile();
+		}
+	}
+
+	async function createProfile(){
+		const result = await fetch(`${defaultAPI}/agendas/Tobias`,{
+			method:"POST"
+		})
+		if(result.ok){
+			getAllContacts();
+		}
 	}
 
 	useEffect(() => {
@@ -88,7 +100,7 @@ export const Home = () => {
 
 							</div>
 							<div className="d-flex justify-content-end w-100 ">
-								<Link className="fa-solid fa-pencil p-4" to="/updateContact" style={{ color: 'inherit', textDecoration: 'none' }}></Link>
+								<Link className="fa-solid fa-pencil p-4" to={`/updateContact/${item.id}`} style={{ color: 'inherit', textDecoration: 'none' }}></Link>
 
 								<i className="fa-solid fa-trash p-4 btn"data-bs-target="#exampleModalToggle" data-bs-toggle="modal" onClick={()=>setDeleteID(item.id)}></i>
 							</div>
@@ -105,10 +117,10 @@ export const Home = () => {
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
+							<h1 class="modal-title fs-5" id="exampleModalToggleLabel">Delete Contact</h1>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
-						<div class="modal-body">
+						<div class="modal-body text-start">
 							are you sure do you want to delete it?
 						</div>
 						<div class="modal-footer">
