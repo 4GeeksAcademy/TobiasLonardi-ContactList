@@ -83,6 +83,7 @@ export const UpdateContact = () => {
                      aria-describedby="emailHelp"
                      placeholder="Full name"
                      name="name"
+                     value={contact.name}
                      onChange={onChangeContact}
                   />
                </div>
@@ -95,6 +96,7 @@ export const UpdateContact = () => {
                      aria-describedby="emailHelp"
                      placeholder="Email adress"
                      name="email"
+                     value={contact.email}
                      onChange={onChangeContact} />
                </div>
                <div className="mb-3 col-12">
@@ -106,6 +108,7 @@ export const UpdateContact = () => {
                      aria-describedby="emailHelp"
                      placeholder="Phone number"
                      name="phone"
+                     value={contact.phone}
                      onChange={onChangeContact}
                   />
                </div>
@@ -118,6 +121,7 @@ export const UpdateContact = () => {
                      aria-describedby="emailHelp"
                      placeholder="Home address"
                      name="address"
+                     value={contact.address}
                      onChange={onChangeContact} />
                </div>
 
